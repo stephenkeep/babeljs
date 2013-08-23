@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script src="babel/babel.js"></script>
+
+<script>
+
+	function languageChanged()
+	{
+		var language=document.getElementById("language");
+		console.log(language.selectedIndex);
+
+		switch (language.selectedIndex) {
+			case 0:
+				selected = "babel/en.json";
+				break;
+			case 1:
+				selected = "babel/es.json";
+				break;
+			default:
+				selected = "babel/en.json";
+				break;
+		}
+
+		Babel.init(selected,function() {
+        	var translate = document.getElementById("translate");
+			translate.innerHTML=Babel.fish("Team");
+    	});
+
+	}
+
+	Babel.init("babel/en.json",function() {});  
+
+</script>
+
+</head>
+<body>
+
+	<select id="language" onchange="languageChanged()">
+  		<option>English</option>
+  		<option>Spanish</option>  
+	</select>
+
+	<div id="translate"><script>document.write(Babel.fish("Team"));</script></div>
+
+</body>
+</html>
